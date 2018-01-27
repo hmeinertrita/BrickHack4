@@ -24,7 +24,11 @@ function saveTimerValue(id, hours, minutes) {
 }
 
 function resetTimer(id) {
-
+  getSavedTimerValue(id, (milliseconds) => {
+    chrome.runtime.getBackgroundPage((window) => {
+      window.resetTimer(id, milliseconds);
+    });
+  });
 }
 
 //Run
