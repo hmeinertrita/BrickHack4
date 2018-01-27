@@ -1,0 +1,32 @@
+#contents{
+  display: flex;
+  flex-direction: column;
+
+  background-color: blue;
+  color: black;
+  font-family: "Gill Sans", sans-serif;
+}
+
+.timer {
+  width: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0px;
+}
+.clock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px 0px;
+}
+.hrs {
+  width: 32px;
+  margin: 0px 2px;
+}
+
+.mins {
+  width: 32px;
+  margin: 0px 2px;
+}
