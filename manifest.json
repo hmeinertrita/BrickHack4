@@ -6,6 +6,7 @@
   "author": "Harrison Meinert-Rita, Harsha Pillai, Eileen Tea",
 
   "browser_action": {
+    "default_icon": "mascot 16x16.png",
     "default_popup": "popup.html"
   },
 
