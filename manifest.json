@@ -16,6 +16,6 @@
 
   "permissions": [
     "alarms",
-    "storage"
+    "storage", "notifications"
   ]
 }
