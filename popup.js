@@ -2,7 +2,7 @@ function hoursToMinutes(hours) {
   return (hours*60);
 }
 function toHours(minutes) {
-  return minutes/60;
+  return Math.floor(minutes/60);
 }
 function toMinutes(minutes) {
   return minutes%60;
