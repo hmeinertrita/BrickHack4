@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     getSavedTimerValue(id, (function(id, hours, minutes) {
       return (function(minutes) {
         if (minutes) {
-          resetTimer(id);
           hours.value = toHours(minutes);
           minutes.value = toMinutes(minutes);
         }
