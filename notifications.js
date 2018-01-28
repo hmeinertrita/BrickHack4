@@ -1,5 +1,5 @@
-function resetTimer(id, milliseconds) {
-  chrome.alarms.create(id,{when: milliseconds});
+function resetTimer(id, minutes) {
+  chrome.alarms.create(id,{delayInMinutes: minutes});
 }
 
 function notify(message) {
