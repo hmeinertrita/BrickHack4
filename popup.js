@@ -24,9 +24,9 @@ function saveTimerValue(id, hours, minutes) {
 }
 
 function resetTimer(id) {
-  getSavedTimerValue(id, (milliseconds) => {
-    chrome.runtime.getBackgroundPage((window) => {
-      window.resetTimer(id, milliseconds);
+  getSavedTimerValue(id, (minutes) => {
+    chrome.runtime.getBackgroundPage((w) => {
+      w.resetTimer(id, minutes);
     });
   });
 }
@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     getSavedTimerValue(id, (function(id, hours, minutes) {
       return (function(minutes) {
         if (minutes) {
-          resetTimer(id);
           hours.value = toHours(minutes);
           minutes.value = toMinutes(minutes);
         }

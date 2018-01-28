@@ -16,6 +16,9 @@
 
   "permissions": [
     "alarms",
-    "storage"
+    "storage", "notifications"
+  ],
+  "web_accessible_resources": [
+    "mascot48.png"
   ]
 }
