@@ -8,18 +8,11 @@ function notify(message) {
 
 chrome.alarms.onAlarm.addListener((alarm) => {
   //notify(alarm.name);
-  chrome.alarms.create(alarm.notifName. {delayInMinutes: 0.1. periodinMinutes: 0.1});
-
+  chrome.notifications.create('reminder', {
+         type: 'basic',
+         iconUrl: 'mascot 128*128.png',
+         title: 'Reminder',
+         message: 'Alarm went off'
+      }, function(notificationId) {});
+   }
 });
-
-(function(){
-  'use strict';
-  var alarmName = 'remindme';
-  function createAlarm() {
-     chrome.alarms.create(alarmName, {
-       delayInMinutes: 0.1, periodInMinutes: 0.1});
-   }
-   function cancelAlarm() {
-     chrome.alarms.clear(alarmName);
-   }
-})();
