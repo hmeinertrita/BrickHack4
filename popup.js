@@ -1,11 +1,11 @@
-function toMilliseconds(hours, minutes) {
-  return (((hours*60)+minutes)*60000);
+function hoursToMinutes(hours) {
+  return (hours*60);
 }
-function toHours(milliseconds) {
-  return toMinutes(milliseconds)/60;
+function toHours(minutes) {
+  return minutes/60;
 }
-function toMinutes(milliseconds) {
-  return milliseconds/60000;
+function toMinutes(minutes) {
+  return minutes%60;
 }
 
 function getSavedTimerValue(id, callback) {
@@ -19,7 +19,7 @@ function getSavedTimerValue(id, callback) {
 
 function saveTimerValue(id, hours, minutes) {
   var items = {}
-  items[id]=toMilliseconds(hours, minutes);
+  items[id]=hoursToMinutes(hours) + parseInt(minutes);
   chrome.storage.sync.set(items);
 }
 
@@ -33,7 +33,7 @@ function resetTimer(id) {
 
 //Run
 document.addEventListener('DOMContentLoaded', () => {
-  var timers = getElementsByClassName('timer');
+  var timers = document.getElementsByClassName('timer');
   var i;
   // Load the saved values and modify the input boxes, if needed.
 
@@ -42,22 +42,28 @@ document.addEventListener('DOMContentLoaded', () => {
     var hours = timers[i].getElementsByClassName('hrs')[0];
     var minutes = timers[i].getElementsByClassName('mins')[0];
 
-    getSavedTimerValue(id, (milliseconds) => {
-      if (milliseconds) {
-        resetTimer(id);
-        hours.value = toHours(milliseconds);
-        minutes.value = toMinutes(milliseconds);
-      }
-    });
+    getSavedTimerValue(id, (function(id, hours, minutes) {
+      return (function(minutes) {
+        if (minutes) {
+          resetTimer(id);
+          hours.value = toHours(minutes);
+          minutes.value = toMinutes(minutes);
+        }
+      });
+    })(id, hours, minutes));
 
     // Ensure the timers change and saved when the dropdown selection changes.
-    hours.addEventListener('change', () => {
-      resetTimer(id);
-      saveTimerValue(id, hours.value, minutes.value);
-    });
-    minutes.addEventListener('change', () => {
-      resetTimer(id);
-      saveTimerValue(id, hours.value, minutes.value);
-    });
+    hours.addEventListener('change', (function(id, hours, minutes) {
+      return (function() {
+        saveTimerValue(id, hours.value, minutes.value);
+        resetTimer(id);
+      });
+    })(id, hours, minutes));
+    minutes.addEventListener('change', (function(id, hours, minutes) {
+      return (function() {
+        saveTimerValue(id, hours.value, minutes.value);
+        resetTimer(id);
+      });
+    })(id, hours, minutes));
   }
 });

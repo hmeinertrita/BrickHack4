@@ -7,5 +7,15 @@
 
   "browser_action": {
     "default_popup": "popup.html"
-  }
+  },
+
+  "background": {
+    "scripts": ["notifications.js"],
+    "persistent": false
+  },
+
+  "permissions": [
+    "alarms",
+    "storage"
+  ]
 }
