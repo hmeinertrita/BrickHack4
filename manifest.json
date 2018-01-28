@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "BrickHack4",
   "version": "0.0",
-  "description": "A Chrome extension Made in 24hrs",
+  "description": "A Chrome extension Made in 24hrs.",
   "author": "Harrison Meinert-Rita, Harsha Pillai, Eileen Tea",
 
   "browser_action": {
